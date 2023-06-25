@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WebStudents;
 using WebStudents.Controllers;
 using WebStudents.Database;
 using WebStudents.Repositories;
@@ -8,7 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 services.AddCors();
-services.AddControllers();
+
+services.AddControllers(cfg =>
+{
+    cfg.Filters.Add<ExceptionFilter>();
+});
+
+
 services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlite("Data Source=./db.sqlite");

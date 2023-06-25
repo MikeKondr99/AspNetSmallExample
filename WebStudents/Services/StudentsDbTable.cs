@@ -22,7 +22,7 @@ public class StudentsDbTable : IStudentsRepository
 
     public Student GetById(int id)
     {
-        return _context.Students.Find(id) ?? throw new NotImplementedException();
+        return _context.Students.Find(id) ?? throw new FileNotFoundException();
     }
 
     public Student Remove(int id)
